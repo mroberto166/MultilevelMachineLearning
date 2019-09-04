@@ -1,0 +1,2 @@
+keyword,variable,samples,level,n_input,scaler
+airf,Lift,143,4,6,m

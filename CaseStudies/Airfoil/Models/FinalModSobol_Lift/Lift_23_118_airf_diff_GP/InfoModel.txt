@@ -1,0 +1,2 @@
+keyword,variable,samples,level_c,level_f,n_input,scaler
+airf_diff,Lift,118,2,3,6,m

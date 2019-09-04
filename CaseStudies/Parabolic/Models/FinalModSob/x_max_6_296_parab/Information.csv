@@ -1,0 +1,2 @@
+epochs,batch_size,n_input,validation_size,hidden_layers,neurons_hidden_layer,activation,optimizer,learning_rate,repetition,loss_function,selection,kernel_regularizer,regularization_parameter,dropout_value,output_activation
+10000,296,7,0.1,5,10,relu,adam,0.01,5,mse,validation_loss,L2,1e-06,0.0,relu

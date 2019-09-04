@@ -1,0 +1,2 @@
+keyword,variable,samples,level_c,level_f,n_input,scaler
+airf_diff,Drag,181,0,1,6,m

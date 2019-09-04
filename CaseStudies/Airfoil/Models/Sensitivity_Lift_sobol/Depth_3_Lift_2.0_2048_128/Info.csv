@@ -1,0 +1,4 @@
+level_c,level_f,samples,scaler,method,MPE
+0,2,512,m,Ensemble,2.1822334043547205
+0,0,2048,m,Ensemble,1.1188813358573864
+2,4,128,m,Mean,6.146477213795687

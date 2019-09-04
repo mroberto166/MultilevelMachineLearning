@@ -1,0 +1,2 @@
+dev_norm_train,dev_norm_test,dev_train,dev_test,mean_norm_train,mean_norm_test,mean_train,mean_test,
+0.14015163642228629,nan,0.05868678473490618,nan,0.27793629109023865,nan,0.07219792223925378,nan

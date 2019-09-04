@@ -1,0 +1,2 @@
+keyword,variable,samples,level_c,level_f,n_input,scaler
+parab_diff,x_max,20,4,5,7,m
