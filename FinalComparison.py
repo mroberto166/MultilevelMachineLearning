@@ -19,9 +19,6 @@ keyword_list = ["parab", "airf", "airf"]
 variable_name_list = ["x_max", "Lift", "Drag"]
 point_list = ["random_only_net", "sobol", "sobol"]
 
-#keyword_list = ["parab"]
-#variable_name_list = ["x_max"]
-#point_list = ["random"]
 
 for k in range(len(keyword_list)):
 
@@ -197,5 +194,5 @@ for k in range(len(keyword_list)):
         print("\n")
         print("Average Speedup wrt SLMC: ", str(round(np.mean(eff_learn_SL),1)))
         print("Max Speedup wrt SLMC: ", str(round(max(eff_learn_SL), 1)))
-        #plt.show()
+        plt.show()
 quit()

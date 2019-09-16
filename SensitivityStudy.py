@@ -23,9 +23,6 @@ keyword_list = ["parab", "airf", "airf"]
 variable_name_list = ["x_max", "Lift", "Drag"]
 point_list = ["random_only_net", "sobol", "sobol"]
 
-keyword_list = ["parab"]
-variable_name_list = ["x_max"]
-point_list = ["random_only_net"]
 
 for k in range(len(keyword_list)):
     keyword = keyword_list[k]
@@ -212,29 +209,7 @@ for k in range(len(keyword_list)):
         new_df = sensitivity_df.ix[index_list_i]
         df_comp_list.append(new_df)
 
-        df_for_time = new_df
-        mod_good_time = list()
-        err_list = list()
-        df_for_time = df_for_time.loc[df_for_time["MPE"]>max(min(score_fin_list), min(df_for_time["MPE"].values)) ]
-        df_for_time = df_for_time.loc[df_for_time["MPE"] < min(max(score_fin_list), max(df_for_time["MPE"].values))]
-        print(df_for_time)
-        for i in range(len(df_for_time)):
-            value_MPE_multi = df_for_time["MPE"].values[i]
-            time_multi = df_for_time["Time"].values[i]
-            value_MPE_single = min(score_fin_list, key=lambda x: abs(x - value_MPE_multi))
-            idx = score_fin_list.index(min(score_fin_list, key=lambda x: abs(x - value_MPE_multi)))
-            time_single = time_fin_list[idx]
-            ratio_time = time_single[0]/time_multi
-            adj_mpe = value_MPE_multi / value_MPE_single
-            ratio_time_adj = ratio_time / adj_mpe
-            mod_good_time.append(ratio_time_adj)
-            err_list.append(value_MPE_multi)
-        df_for_time["err"] = err_list
-        df_for_time["rat"] =mod_good_time
-
-
-        plt.figure()
-        plt.scatter(err_list, mod_good_time)
+        
 
 
 
@@ -270,10 +245,6 @@ for k in range(len(keyword_list)):
              rotation=0,
              bbox=dict(boxstyle="round", ec=(0, 0, 0), fc=(0.95, 0.95, 0.95),))
     plt.xlabel(r'Accuracy Speed Up $G$')
-
-    #total_list = [df_N0_list, df_Nf_list,df_comp_list, df_MPE_list]
-    #name_list = [r'$M_0$', r'$M_L$', r'$c_{ml}$', r'$\leq \varepsilon_G <$']
-    #var_list = ["N0", "Nf", "Model Complexity", "null"]
 
     total_list = [df_N0_list, df_Nf_list,df_comp_list]
     name_list = [r'$N_0$', r'$N_L$', r'$c_{ml}$']

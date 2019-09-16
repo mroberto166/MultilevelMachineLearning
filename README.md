@@ -2,9 +2,10 @@
 Repository to take track of all updates in thesis project
 
 ## Reproduce the plots of the sensitivity study
-In the folder "Solve Ode", run:
+In the project foler, run:
 
     python SensitivityStudy.py
+
 	 
 ## Reproduce the plots of UQ
 In the folder "Solve Ode", run: 
