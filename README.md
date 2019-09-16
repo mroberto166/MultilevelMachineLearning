@@ -1,5 +1,5 @@
-# ThesisProject
-Repository to take track of all updates in thesis project
+# TA Multi-level procedure for enhancing accuracy of machine learning algorithms
+Repository to reproduce the experiments in the paper "A Multi-level procedure for enhancing accuracy of machine learning algorithms" 
 
 ## Reproduce the plots for the convergence study of generalization error
 In the project foler, run:
@@ -25,15 +25,6 @@ In the project foler, run:
 - scipy        1.1.0
 - seaborn      0.9.0
 
-## How to run the code and assemble your own model
-
-- Network ensemble training
-
-- Gaussian Process ensemble training
-
-- Set design parameters
-
-- Train the building piece and assemble the model folder
 
 ### Python Dependencies for the model assembling
 - matplotlib   2.2.3
