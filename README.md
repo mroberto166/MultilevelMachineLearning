@@ -1,6 +1,11 @@
 # ThesisProject
 Repository to take track of all updates in thesis project
 
+## Reproduce the plots for the convergence study of generalization error
+In the project foler, run:
+
+    python CollectDataBound.py
+
 ## Reproduce the plots of the sensitivity study
 In the project foler, run:
 
@@ -8,7 +13,7 @@ In the project foler, run:
 
 	 
 ## Reproduce the plots of UQ
-In the folder "Solve Ode", run: 
+In the project foler, run:
 
      python FinalComparison.py
 

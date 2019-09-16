@@ -15,8 +15,8 @@ plt.rc('xtick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
 plt.rc('ytick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
 plt.rc('axes', titlesize=BIGGER_SIZE)    # fontsize of the tick labels
 
-files = ["TestNet_60.txt", "TestNet_rand_gol.txt", "TestNet_rand_norm.txt", "TestNet_rand_uniform.txt", "sob_test_sobol.txt"]
-initial = ["He, Uniform Inputs", "Glorot", "Normal", "Uniform", "He, Sobol Inputs"]
+#files = ["TestNet_60.txt", "TestNet_rand_gol.txt", "TestNet_rand_norm.txt", "TestNet_rand_uniform.txt", "sob_test_sobol.txt"]
+#initial = ["He, Uniform Inputs", "Glorot", "Normal", "Uniform", "He, Sobol Inputs"]
 
 files = ["TestNet_60.txt"]
 initial = ["He, Uniform Inputs"]
