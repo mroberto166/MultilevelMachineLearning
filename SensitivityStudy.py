@@ -59,7 +59,7 @@ for k in range(len(keyword_list)):
 
             score = pd.read_csv(dir_path + "/Score.txt", header=0, sep=",")
             time = pd.read_csv(dir_path + "/Time.txt", header=None, sep=",")
-            time_finest = pd.read_csv(dir_path + "/time_finest.txt", header=None, sep=",").values[0]
+            time_finest = pd.read_csv(dir_path + "/Time_Finest.txt", header=None, sep=",").values[0]
             score_finest = pd.read_csv(dir_path + "/Score_fin.txt", header=0, sep=",")["MPE"].values[0]
             SPE_finest = pd.read_csv(dir_path + "/Score_fin.txt", header=0, sep=",")["SPE"].values[0]
             models = pd.read_csv(dir_path + "/ModelLevelInfo.txt", header=0, sep=",")
@@ -126,6 +126,7 @@ for k in range(len(keyword_list)):
     plt.xlabel(r'Computational Time')
     plt.ylabel(r'Gain $G$')
     plt.legend()
+    plt.savefig("Images/G_VS_Time_"+variable_name+".png", dpi=500)
 
     # Prepare diagram efficiency vs error (per erro intervals)
     N_int = 5
@@ -196,7 +197,6 @@ for k in range(len(keyword_list)):
         new_df = sensitivity_df.ix[index_list_i]
         df_comp_list.append(new_df)
 
-
     out_var_vec = list()
     out_var_vec.append("Model Goodness MPE")
     # out_var_vec.append("MPE")
@@ -209,7 +209,6 @@ for k in range(len(keyword_list)):
     # out_var_vec.append("Efficiency")
     # out_var_vec.append("Model Goodness SPE")
 
-
     plt.figure()
     ax = plt.gca()
     plt.grid(True, which="both", ls=":")
@@ -221,7 +220,7 @@ for k in range(len(keyword_list)):
     # Annotate
     x_line_annotation = baseline
     x_text_annotation = baseline
-    plt.text(x =0.1, y=0.1,
+    plt.text(x=0.1, y=0.1,
              horizontalalignment='center',
              verticalalignment='center',
              transform=ax.transAxes,
@@ -307,6 +306,7 @@ for k in range(len(keyword_list)):
     plt.yscale('log')
     plt.xscale('log')
     ax.yaxis.set_major_formatter(PercentFormatter())
+    plt.savefig("Images/err_VS_Time_"+variable_name+".png", dpi=500)
 
     plt.figure()
     ax = plt.gca()
@@ -322,13 +322,14 @@ for k in range(len(keyword_list)):
     plt.xscale('log')
     x_value=[str(x)+ r'\%' for x in ax.get_yticks()]
     ax.yaxis.set_major_formatter(PercentFormatter())
+    plt.savefig("Images/err_VS_Time_0_"+variable_name+".png", dpi=500)
 
     plt.figure()
     ax = plt.gca()
     plt.grid(True, which="both", ls=":")
     for i in range(len(df_N0_list)):
         plt.scatter(df_N0_list[i]["Time"], df_N0_list[i]["MPE"], label=r'$N_0 = $ '+str(N0_vec[i]))
-    plt.scatter((time_fin_list), (score_fin_list), marker="v", color="DarkBlue", label="Single Level Model")
+    plt.scatter(time_fin_list, score_fin_list, marker="v", color="DarkBlue", label="Single Level Model")
     plt.legend(loc=3)
     plt.xlabel("Computational Time")
     plt.ylabel("Mean Prediction Error")
@@ -336,13 +337,14 @@ for k in range(len(keyword_list)):
     plt.xscale('log')
     x_value=[str(x)+ r'\%' for x in ax.get_yticks()]
     ax.yaxis.set_major_formatter(PercentFormatter())
+    plt.savefig("Images/err_VS_Time_1_"+variable_name+".png", dpi=500)
 
     plt.figure()
     ax = plt.gca()
     plt.grid(True, which="both", ls=":")
     for i in range(len(df_comp_list)):
         plt.scatter((df_comp_list[i]["Time"]), (df_comp_list[i]["MPE"]), label=r'$c_{ml} = $ '+str(comp_vec[i]))
-    plt.scatter((time_fin_list), (score_fin_list), marker="v", color="DarkBlue", label="Single Level Model")
+    plt.scatter(time_fin_list, score_fin_list, marker="v", color="DarkBlue", label="Single Level Model")
     plt.legend(loc=3)
     plt.xlabel("Computational Time")
     plt.ylabel("Mean Prediction Error")
@@ -350,5 +352,6 @@ for k in range(len(keyword_list)):
     plt.xscale('log')
     x_value=[str(x)+ r'\%' for x in ax.get_yticks()]
     ax.yaxis.set_major_formatter(PercentFormatter())
+    plt.savefig("Images/err_VS_Time_2_"+variable_name+".png", dpi=500)
 
-    plt.show()
+    #plt.show()

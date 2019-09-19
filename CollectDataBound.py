@@ -55,7 +55,7 @@ for i in range(len(files)):
     plt.legend(loc=1)
     plt.xlabel(r'Training Samples $M$')
     plt.ylabel("Mean Absolute Error")
-    plt.savefig('../Report/Images/bounds_'+des[i]+'.pdf', format='pdf')
+    plt.savefig('Images/bounds_'+des[i]+'.pdf', format='pdf')
 
     plt.figure()
     plt.grid(True, which="both", ls="-.")
@@ -63,4 +63,4 @@ for i in range(len(files)):
     plt.xscale("log")
     plt.xlabel(r'Training Samples $M$')
     plt.ylabel("Compression")
-    plt.savefig('../Report/Images/compression_'+des[i]+'.pdf', format='pdf')
+    plt.savefig('Images/compression_'+des[i]+'.pdf', format='pdf')
