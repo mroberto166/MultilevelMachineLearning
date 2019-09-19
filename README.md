@@ -25,6 +25,10 @@ In the project foler, run:
 
      python search_network_cluster.py "keyword" "variable_name" "samples" "loss" "level_single" "level_c" "level_f" "selection_method" "validation_size" "string_norm" "scaler" "search_folder" "point"
      
+Once the training is complete, run:
+
+     python GetBestPerformingConf.py "keyword" "search_folder"
+     
 **keyword**: choose the problem of interest (Airfoil problem or Projectile Motion) and if the target of the ensemble training is the variable **map** or the **detail**:
 - *airf*, for the selected **observable** at given grid resolution of the Airfoil Problem
 - *airf_diff*,  for the **selected observable detail** between two grid resolutions of the Airfoil Problem
@@ -78,6 +82,12 @@ In the project foler, run:
 **scaler**: type of scaler for data normalization (if **string_norm**=*false*, this input will be ingored in the code)
 - *s*: standard scaler (https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)
 - *m*: minmax scaler (https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html)
+
+**search_folder**: name of the folder that will contain the folder corresponding to different confiugrations of the design parameters
+
+**point**: class of points used to generate the data (For the airfoil problem only Sobol samples are available. Therefore, this input will be ignored if the airfoil problem is chosen.)
+- *sobol*: low discrepansy sobol points
+- *random*: unniformely distributed random points
 
 ### Python Dependencies for plotting
 - matplotlib   2.2.3
