@@ -2,9 +2,13 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 
-name_list = ["search_net_train_drag_01"]
-keyword = "airf"
+
+keyword = sys.argv[1]
+search_folder = sys.argv[2]
+name_list = [search_folder]
+
 
 if keyword == "parab":
     case_study = "Parabolic"
