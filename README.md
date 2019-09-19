@@ -2,18 +2,18 @@
 Repository to reproduce the experiments in the paper "A Multi-level procedure for enhancing accuracy of machine learning algorithms" 
 
 ## Reproduce the plots for the convergence study of generalization error
-In the project foler, run:
+In the project folder, run:
 
     python CollectDataBound.py
 
 ## Reproduce the plots of the sensitivity study
-In the project foler, run:
+In the project folder, run:
 
     python SensitivityStudy.py
 
 	 
 ## Reproduce the plots of UQ
-In the project foler, run:
+In the project folder, run:
 
      python FinalComparison.py
 
@@ -21,7 +21,7 @@ In the project foler, run:
 ### Choice of the neural network hyperparameters
 Perform the ensemble training model of https://arxiv.org/abs/1903.03040
 
-In the project foler, run:
+In the project folder, run:
 
      python search_network_cluster.py "keyword" "variable_name" "samples" "loss" "level_single" "level_c" "level_f" "selection_method" "validation_size" "string_norm" "scaler" "search_folder" "point"
      
@@ -91,6 +91,12 @@ Once the training is complete, run:
 **point**: class of points used to generate the data (For the airfoil problem only Sobol samples are available. Therefore, this input will be ignored if the airfoil problem is chosen.)
 - *sobol*: low discrepansy sobol points
 - *random*: unniformely distributed random points
+
+### Choice of the Gaussian Process covariance function
+
+In the project folder, run:
+
+     python search_network_cluster.py "keyword" "variable_name" "samples" "level_single" "level_c" "level_f" "validation_size" "string_norm" "scaler" "point"
 
 
 ### Python Dependencies for plotting
