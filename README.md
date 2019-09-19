@@ -53,11 +53,11 @@ Once the training is complete, run:
 - One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
 - One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
 
-**level_c**: coarser mesh reoslution to approximate the detail (the input will be ingored if **keyword** does not contain "diff" )
+**level_c**: coarser mesh reoslution to approximate the **detail** (the input will be ingored if **keyword** does not contain "diff" )
 - One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
 - One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
 
-**level_f**: finer mesh reoslution to approximate the detail (the input will be ingored if **keyword** does not contain "diff" )
+**level_f**: finer mesh reoslution to approximate the **detail** (the input will be ingored if **keyword** does not contain "diff" )
 - One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
 - One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
 
