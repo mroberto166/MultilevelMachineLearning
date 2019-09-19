@@ -34,6 +34,9 @@ Once the training is complete, run:
 - *airf_diff*,  for the **selected observable detail** between two grid resolutions of the Airfoil Problem
 - *parab, for* the selected **observable** at given grid resolution of the Projectile Motion Problem
 - *prab_diff*, for the **selected observable detail** between two grid resolutions of the Airfoil Problem
+```diff
+! Note: to run  GetBestPerformingConf.py airf and airf_diff or parab and parab_diff can be chosen indifferently for the airfoil and projectile motion problem.
+```
 
 **variable_name**: ame of the observables:
 - *x_max*, for the Projectile Motion example
@@ -88,6 +91,7 @@ Once the training is complete, run:
 **point**: class of points used to generate the data (For the airfoil problem only Sobol samples are available. Therefore, this input will be ignored if the airfoil problem is chosen.)
 - *sobol*: low discrepansy sobol points
 - *random*: unniformely distributed random points
+
 
 ### Python Dependencies for plotting
 - matplotlib   2.2.3
