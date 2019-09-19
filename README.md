@@ -39,20 +39,20 @@ In the project foler, run:
 **samples**: number of training samples for the choice of the model hyperparameters
 
 **loss**: loss function:
--*mae*, Mean Absolute Error
--*mse*, Mean Squared Error
+- *mae*, Mean Absolute Error
+- *mse*, Mean Squared Error
 
 **level_single**: resolution mesh to approximate the **observable** (the input will be ingored if **keyword** contains 'diff' ):
--One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
--One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
+- One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
+- One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
 
 **level_c**: coarser mesh reoslution to approximate the detail (the input will be ingored if **keyword** does not contain "diff" )
--One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
--One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
+- One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
+- One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
 
 **level_f**: finer mesh reoslution to approximate the detail (the input will be ingored if **keyword** does not contain "diff" )
--One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
--One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
+- One value between *0 and 4* for the Airfoil problem, 4 for the finest resolution, 0 for the coarsest
+- One value between *0 and 6* for the Projectile Motion problem, 6 for the finest resolution, 0 for the coarsest
 
 ```diff
 ! Note 1: **level_f** > **level_c**
@@ -64,20 +64,20 @@ In the project foler, run:
 ```
 
 **selection_method**: selection criterion for the best performin configuration:
--*validation_loss*: value of the loss function on the validation set
--*train_loss*: value of the loss function on the training set
--*wasserstein_train*: value of the Waserstain distance on the training set
+- *validation_loss*: value of the loss function on the validation set
+- *train_loss*: value of the loss function on the training set
+- *wasserstein_train*: value of the Waserstain distance on the training set
 
 **validation_size**: size of the validation set (value between 0 and 1).
 - Give value 1 if **selection_method**=*train_loss* or **selection_method**=*wasserstein_train*
 
 **string_norm**: choose if normalize the data or not
--*true*: normalize the data
--*false*: do not normalize the data
+- *true*: normalize the data
+- *false*: do not normalize the data
 
 **scaler**: type of scaler for data normalization (if **string_norm**=*false*, this input will be ingored in the code)
--*s*: standard scaler (https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)
--*m*: minmax scaler (https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html)
+- *s*: standard scaler (https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)
+- *m*: minmax scaler (https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html)
 
 ### Python Dependencies for plotting
 - matplotlib   2.2.3
