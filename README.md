@@ -96,7 +96,7 @@ Once the training is complete, run:
 
 In the project folder, run:
 
-     python search_network_cluster.py "keyword" "variable_name" "samples" "level_single" "level_c" "level_f" "validation_size" "string_norm" "scaler" "point"
+     python GP_model_selection.py "keyword" "variable_name" "samples" "level_single" "level_c" "level_f" "validation_size" "string_norm" "scaler" "point"
 
 
 ### Python Dependencies for plotting
