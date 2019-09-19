@@ -18,7 +18,6 @@ plt.rc('axes', axisbelow=True, labelsize=MEDIUM_SIZE)    # fontsize of the x and
 plt.rc('xtick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
 plt.rc('ytick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
 
-save = True
 keyword_list = ["parab", "airf", "airf"]
 variable_name_list = ["x_max", "Lift", "Drag"]
 point_list = ["random_only_net", "sobol", "sobol"]
@@ -68,8 +67,6 @@ for k in range(len(keyword_list)):
             df["Time"] = time.values
             df["Time_Finest"] = time_finest
             df["Time Loss"] = time.values/time_finest
-            # df["MPE Ratio"] = df["MPE"]/score_base
-            # df["Time Ratio"] = df["Time"]/time_base
             df["N0"] = N0
             df["Nf"] = Nf
             df["Model Complexity"] = round(df.n_layer.values[0]/df.depth.values[0],2)
@@ -77,8 +74,6 @@ for k in range(len(keyword_list)):
             df["Model Goodness SPE"] = df["gain_SPE_fin"] / df["Time Loss"]
             df["Efficiency"] = np.log(df["MPE"]) *np.log(df["Time"])
 
-            #df["Model Goodness MPE Base"] = 1/(df["MPE Ratio"] * df["Time Ratio"])
-            # print(df)
             if i == 0:
                 sensitivity_df = df
                 model_df = models
@@ -93,12 +88,8 @@ for k in range(len(keyword_list)):
 
     sensitivity_df = sensitivity_df.reset_index(drop=True)
     model_df = model_df.reset_index(drop=True)
-    # sensitivity_df = sensitivity_df[sensitivity_df.index != sensitivity_df['ratio_c_f'].idxmax()]
-    # sensitivity_df = sensitivity_df.reset_index(drop=True)
     sensitivity_df = sensitivity_df.drop("n_layer", axis=1)
     sensitivity_df = sensitivity_df.drop("depth", axis=1)
-    # sensitivity_df = sensitivity_df.drop("gain_MPE", axis=1)
-    # sensitivity_df = sensitivity_df.drop(" gain_SPE", axis=1)
     sensitivity_df = sensitivity_df.drop("MPE_0", axis=1)
 
     sensitivity_df = sensitivity_df.loc[(sensitivity_df["Model Goodness MPE"] < 40)]
@@ -125,7 +116,6 @@ for k in range(len(keyword_list)):
         ave_MPE_list_per_time.append(new_df["Model Goodness MPE"].mean())
         std_MPE_list_per_time.append(new_df["Model Goodness MPE"].std())
 
-
     plt.figure()
     ax = plt.gca()
     plt.grid(True, which="both", ls=":")
@@ -134,9 +124,8 @@ for k in range(len(keyword_list)):
     plt.plot(time_list, ave_MPE_list_per_time, marker="*", color="C0", label=r'Mean', ls="--", markersize=10)
     plt.xscale('log')
     plt.xlabel(r'Computational Time')
-    plt.ylabel(r'Accuracy Speed Up $G$')
+    plt.ylabel(r'Gain $G$')
     plt.legend()
-    plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\error_cost_' + variable_name + '.pdf', format='pdf')
 
     # Prepare diagram efficiency vs error (per erro intervals)
     N_int = 5
@@ -160,7 +149,6 @@ for k in range(len(keyword_list)):
         ave_MPE_list_per_MPE.append(new_df["Model Goodness MPE"].mean())
         std_MPE_list_per_MPE.append(new_df["Model Goodness MPE"].std())
 
-
     plt.figure()
     ax = plt.gca()
     plt.grid(True, which="both", ls=":")
@@ -171,9 +159,8 @@ for k in range(len(keyword_list)):
     x_value=[str(x)+ r'\%' for x in ax.get_xticks()]
     ax.xaxis.set_major_formatter(PercentFormatter())
     plt.xlabel(r'Multilevel MPE $\varepsilon_{ml}$')
-    plt.ylabel(r'Accuracy Speed Up $G$')
+    plt.ylabel(r'Gain $G$')
     plt.legend()
-
 
     # split dataframe into 3 df for each parameter of interest
     print("=======================================================")
@@ -208,9 +195,6 @@ for k in range(len(keyword_list)):
         index_list_i = sensitivity_df.index[sensitivity_df["Model Complexity"] == comp]
         new_df = sensitivity_df.ix[index_list_i]
         df_comp_list.append(new_df)
-
-        
-
 
 
     out_var_vec = list()
@@ -275,19 +259,11 @@ for k in range(len(keyword_list)):
                     value = df[var].values[0]
                     label = name + r' $=$ ' + str(value)
                     print("#################################")
-
                     print(var, df[var].values[0])
                     print(df[our_var].loc[(df["Model Goodness MPE"] < remove_outliers)].mean())
-                #else:
-                #    value_min = min_MPE_list[i]
-                #    value_max = max_MPE_list[i]
-                #    label = str(value_min) + r' $\leq \varepsilon_G <$ ' + str(value_max)
 
                 if j != 3:
                     sns.distplot(df[our_var], label=label, kde=True, hist=False, norm_hist=False,kde_kws={'shade': True, 'linewidth': 2})
-                #else:
-                    #sns.distplot(df["Model Goodness MPE"], label=label, kde=True, hist=False, norm_hist=False, kde_kws={'shade': True, 'linewidth': 2})
-                    #plt.gca().set_ylim(bottom=0)
             plt.legend(loc=1)
 
             if "gain" in our_var or "Good" in our_var or "Base" in our_var:
@@ -310,15 +286,12 @@ for k in range(len(keyword_list)):
                          bbox=dict(boxstyle="round", ec=(0, 0, 0), fc=(0.95, 0.95, 0.95),))
                 plt.xlabel(r'Accuracy Speed Up $G$')
 
-            #plt.savefig('C:\\Users\\rober\\Desktop\\LA Presentation\\sens_' + variable_name + "_" + str(k)+"_" + str(j) + '.png', dpi=500)
-
     if keyword == "airf":
         perc = 4
     elif keyword == "parab":
         perc = 10
     print("Percentage good:",len(sensitivity_df.loc[(sensitivity_df["Model Goodness MPE"]>1)])/len(sensitivity_df["Model Goodness MPE"])*100)
     print("Percentage larger than "+str(perc)+": "+ str(len(sensitivity_df.loc[(sensitivity_df["Model Goodness MPE"]>perc)])/len(sensitivity_df["Model Goodness MPE"])*100)+"%")
-
 
     ##########################################################################################################
 
@@ -334,7 +307,6 @@ for k in range(len(keyword_list)):
     plt.yscale('log')
     plt.xscale('log')
     ax.yaxis.set_major_formatter(PercentFormatter())
-    plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\mpe_time_tot_' + variable_name  + '.pdf', format='pdf')
 
     plt.figure()
     ax = plt.gca()
@@ -350,13 +322,11 @@ for k in range(len(keyword_list)):
     plt.xscale('log')
     x_value=[str(x)+ r'\%' for x in ax.get_yticks()]
     ax.yaxis.set_major_formatter(PercentFormatter())
-    plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\mpe_time_' + variable_name + "_" + str(0) + '.pdf', format='pdf')
 
     plt.figure()
     ax = plt.gca()
     plt.grid(True, which="both", ls=":")
     for i in range(len(df_N0_list)):
-        #plt.scatter(np.log10(sensitivity_df["Time"]), np.log10(sensitivity_df["MPE"]), label="Multi Level Model", alpha=0.5)
         plt.scatter(df_N0_list[i]["Time"], df_N0_list[i]["MPE"], label=r'$N_0 = $ '+str(N0_vec[i]))
     plt.scatter((time_fin_list), (score_fin_list), marker="v", color="DarkBlue", label="Single Level Model")
     plt.legend(loc=3)
@@ -366,13 +336,11 @@ for k in range(len(keyword_list)):
     plt.xscale('log')
     x_value=[str(x)+ r'\%' for x in ax.get_yticks()]
     ax.yaxis.set_major_formatter(PercentFormatter())
-    plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\mpe_time_' + variable_name + "_" + str(1) + '.pdf', format='pdf')
 
     plt.figure()
     ax = plt.gca()
     plt.grid(True, which="both", ls=":")
     for i in range(len(df_comp_list)):
-        #plt.scatter(np.log10(sensitivity_df["Time"]), np.log10(sensitivity_df["MPE"]), label="Multi Level Model", alpha=0.5)
         plt.scatter((df_comp_list[i]["Time"]), (df_comp_list[i]["MPE"]), label=r'$c_{ml} = $ '+str(comp_vec[i]))
     plt.scatter((time_fin_list), (score_fin_list), marker="v", color="DarkBlue", label="Single Level Model")
     plt.legend(loc=3)
@@ -382,6 +350,5 @@ for k in range(len(keyword_list)):
     plt.xscale('log')
     x_value=[str(x)+ r'\%' for x in ax.get_yticks()]
     ax.yaxis.set_major_formatter(PercentFormatter())
-    plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\mpe_time_' + variable_name + "_" + str(2) + '.pdf', format='pdf')
 
     plt.show()
