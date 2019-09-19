@@ -26,11 +26,13 @@ In the project foler, run:
      python search_network_cluster.py "keyword" "variable_name" "samples" "loss" "level_single" "level_c" "level_f" "selection_method" "validation_size" "string_norm" "scaler" "search_folder" "point"
      
 **keyword**
+
 Choose the problem of interest (Airfoil problem or Projectile Motion) and if the target of the ensemble training is the variable **map** or the **detail**:
-- airf
-- airf_diff
-- parab
-- prab_diff
+- *airf*, for the selected **function** at given grid resolution of the Airfoil Problem
+- *airf_diff*,  for the **selected function detail** between two grid resolutions of the Airfoil Problem
+- *parab, for* the selected **function** at given grid resolution of the Projectile Motion Problem
+- *prab_diff*, for the **selected function detail** between two grid resolutions of the Airfoil Problem
+
 **variable_name**
 **samples**
 **loss**
@@ -41,6 +43,7 @@ Choose the problem of interest (Airfoil problem or Projectile Motion) and if the
 **validation_size**
 **string_norm**
 **scaler**
+
 ### Python Dependencies for plotting
 - matplotlib   2.2.3
 - numpy        1.15.4
