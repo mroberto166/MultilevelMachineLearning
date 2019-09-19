@@ -29,6 +29,7 @@ Once the training is complete, run:
 
      python GetBestPerformingConf.py "keyword" "search_folder"
      
+     
 **keyword**: choose the problem of interest (Airfoil problem or Projectile Motion) and if the target of the ensemble training is the variable **map** or the **detail**:
 - *airf*, for the selected **observable** at given grid resolution of the Airfoil Problem
 - *airf_diff*,  for the **selected observable detail** between two grid resolutions of the Airfoil Problem
@@ -98,6 +99,7 @@ In the project folder, run:
 
      python GP_model_selection.py "keyword" "variable_name" "samples" "level_single" "level_c" "level_f" "validation_size" "string_norm" "scaler" "point"
 
+### Training of the multi-level model
 
 ### Python Dependencies for plotting
 - matplotlib   2.2.3
