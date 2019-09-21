@@ -107,6 +107,7 @@ Once the training is complete, run:
 **cluster**: option to run the code on LSF HPC (Euler ETH)
 - *true*
 - *false*
+
 Set **cluster==false** if you do not have access to a LSF cluster
 
 
@@ -127,9 +128,12 @@ In the project folder, run:
 - seaborn      0.9.0
 
 
-### Python Dependencies for the model assembling
+### Python Dependencies for the ensemble training
 - matplotlib   2.2.3
 - numpy        1.15.4
 - pandas       0.23.4
 - scipy        1.1.0
 - seaborn      0.9.0
+- scikit-learn 0.21.2
+- tensorflow   1.12.0
+- keras        2.2.4
