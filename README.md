@@ -9,16 +9,22 @@ In the project folder, run:
 
     python CollectDataBound.py
 
+The resulting plots will be stored in the folder **Images**
+
 ## Reproduce the plots of the sensitivity study
 In the project folder, run:
 
     python SensitivityStudy.py
 
 	 
+The resulting plots will be stored in the folder **Images**
+
 ## Reproduce the plots of UQ
 In the project folder, run:
 
      python FinalComparison.py
+
+The resulting plots will be stored in the folder **Images**
 
 ## Ensemble training for the selection of the models hyperparameters (Neural Network and Gaussian Process Regressors)
 ### Choice of the neural network hyperparameters
@@ -99,8 +105,9 @@ Once the training is complete, run:
 - *random*: unniformely distributed random points
 
 **cluster**: option to run the code on LSF HPC (Euler ETH)
-- *true*, for the Projectile Motion example
-- *false*, for the Airfoil example
+- *true*
+- *false*
+Set **cluster==false** if you do not have access to a LSF cluster
 
 
 ### Choice of the Gaussian Process covariance function
