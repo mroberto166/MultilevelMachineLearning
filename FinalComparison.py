@@ -98,7 +98,7 @@ for k in range(len(keyword_list)):
     plt.title("Standard Deviation Estimator")
     plt.title("Mean Estimator")
     plt.legend(loc=3)
-    plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\' + variable_name + '_mean..pdf', format = 'pdf')
+    # plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\' + variable_name + '_mean..pdf', format = 'pdf')
 
     fig_std = plt.figure()
     ax_1 = plt.gca()
@@ -115,7 +115,7 @@ for k in range(len(keyword_list)):
     plt.xlabel("Computational Time")
     plt.title("Standard Deviation Estimator")
     plt.legend(loc=3)
-    plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\' + variable_name + '_std.pdf', format = 'pdf')
+    # plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\' + variable_name + '_std.pdf', format = 'pdf')
 
     fig_wass = plt.figure()
     ax_1 = plt.gca()
@@ -132,8 +132,8 @@ for k in range(len(keyword_list)):
     plt.xlabel("Computational Time")
     plt.title("Wasserstain Distance")
     plt.legend(loc=3)
-    plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\' + variable_name + '_wass.pdf', format = 'pdf')
-
+    # plt.savefig('C:\\Users\\rober\\Desktop\\Last Semester\\Master Thesis\\Project\\LA Presentation\\' + variable_name + '_wass.pdf', format = 'pdf')
+    plt.savefig('Images/' + variable_name + '_wass.png', dpi=500)
 
     # Compute speed up
     min_time = (max(min(time_MC), min(time_MLMC), min(time_learn_SL), min(time_learn_ML)))
@@ -194,5 +194,4 @@ for k in range(len(keyword_list)):
         print("\n")
         print("Average Speedup wrt SLMC: ", str(round(np.mean(eff_learn_SL),1)))
         print("Max Speedup wrt SLMC: ", str(round(max(eff_learn_SL), 1)))
-        plt.show()
 quit()
