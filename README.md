@@ -1,6 +1,9 @@
 # A Multi-level procedure for enhancing accuracy of machine learning algorithms
 Repository to reproduce the experiments in the paper "A Multi-level procedure for enhancing accuracy of machine learning algorithms" 
 
+If you are on Windows OS, make sure to save your python executable path in an **evironnment variable** as **PYTHON36**. Then, the **python** variable below should be replaced by **%PYTHON36%**.
+If you are on Linux OS, make sure to import your python exectuable path in your .bashrc as **python3**. Then, the **python** variable below should be replaced by **python3**.
+This is important for the section **Ensemble training for the selection of the models hyperparameters**
 ## Reproduce the plots for the convergence study of generalization error
 In the project folder, run:
 
@@ -17,7 +20,7 @@ In the project folder, run:
 
      python FinalComparison.py
 
-## Train your own model
+## Ensemble training for the selection of the models hyperparameters (Neural Network and Gaussian Process Regressors)
 ### Choice of the neural network hyperparameters
 Perform the ensemble training model of https://arxiv.org/abs/1903.03040 (https://github.com/kjetil-lye/learning_airfoils
 )
@@ -25,7 +28,7 @@ Perform the ensemble training model of https://arxiv.org/abs/1903.03040 (https:/
 
 In the project folder, run:
 
-     python search_network_cluster.py "keyword" "variable_name" "samples" "loss" "level_single" "level_c" "level_f" "selection_method" "validation_size" "string_norm" "scaler" "search_folder" "point"
+     python search_network_cluster.py "keyword" "variable_name" "samples" "loss" "level_single" "level_c" "level_f" "selection_method" "validation_size" "string_norm" "scaler" "search_folder" "point" "cluster"
      
 Once the training is complete, run:
 
@@ -95,13 +98,19 @@ Once the training is complete, run:
 - *sobol*: low discrepansy sobol points
 - *random*: unniformely distributed random points
 
+**cluster**: option to run the code on LSF HPC (Euler ETH)
+- *true*, for the Projectile Motion example
+- *false*, for the Airfoil example
+
+
 ### Choice of the Gaussian Process covariance function
 
 In the project folder, run:
 
      python GP_model_selection.py "keyword" "variable_name" "samples" "level_single" "level_c" "level_f" "validation_size" "string_norm" "scaler" "point"
 
-### Training of the multi-level model
+## Training of the multi-level model
+**In preparation..**
 
 ### Python Dependencies for plotting
 - matplotlib   2.2.3
