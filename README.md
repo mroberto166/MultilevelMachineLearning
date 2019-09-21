@@ -19,7 +19,9 @@ In the project folder, run:
 
 ## Train your own model
 ### Choice of the neural network hyperparameters
-Perform the ensemble training model of https://arxiv.org/abs/1903.03040
+Perform the ensemble training model of https://arxiv.org/abs/1903.03040 (https://github.com/kjetil-lye/learning_airfoils
+)
+
 
 In the project folder, run:
 

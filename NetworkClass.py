@@ -13,6 +13,8 @@ import scipy
 from termcolor import colored
 import warnings
 
+# Credits: https://github.com/kjetil-lye/learning_airfoils
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 os.system('color')
 

@@ -30,6 +30,7 @@ string_norm = sys.argv[10]
 scaler = sys.argv[11]
 search_folder = sys.argv[12]
 point=sys.argv[13]
+cluster = sys.argv[14]
 
 n_input = 0
 
@@ -173,7 +174,7 @@ for setup in settings:
 
     Utils.call_NeuralNetwork_cluster(keyword, samples, loss, model_path_folder_set,
                                      variable_name, level_c, level_f, level_single,
-                                     string_norm, validation_size, selection_method, scaler, setup, point)
+                                     string_norm, validation_size, selection_method, scaler, setup, point, cluster=cluster)
 
     i = i+1
 

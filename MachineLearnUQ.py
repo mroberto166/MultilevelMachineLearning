@@ -13,7 +13,7 @@ results_UQ = pd.DataFrame(columns=["Time", "MSE_mean", "MSE_std", "MSE_wass_dist
 
 keyword = "parab"
 variable_name = "x_max"
-point = "random"
+point = "random_only_net"
 type_point = "Uniform"
 modality = "NET"
 
@@ -45,7 +45,7 @@ folder_name = "/ResultsUQ_"+point+"/"
 models_base_path = "CaseStudies/"+case_study+"/Models/"
 data_base_path = "CaseStudies/"+case_study+"/Data/"
 results_path = "CaseStudies/"+case_study+folder_name
-folder_models_SL = "SingleLevelModels_"+ variable_name + "_" + point
+folder_models_SL = "SingleLevelModels_" + variable_name + "_" + point
 path_models_SL = models_base_path + folder_models_SL
 
 reference_solution = pd.read_csv(data_base_path + file_name, header=0)

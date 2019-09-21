@@ -43,7 +43,7 @@ level_f = sys.argv[6]
 validation_size = float(sys.argv[7])
 string_norm = sys.argv[8]
 scaler = sys.argv[9]
-point=sys.argv[10]
+point = sys.argv[10]
 
 scaler = scaler.replace("'","")
 string_norm = string_norm.replace("'","")
@@ -56,6 +56,7 @@ print(level_c)
 print(level_f)
 print(string_norm)
 print(scaler)
+print(validation_size)
 
 # ====================================================
 if string_norm == "true" or string_norm == "'true'":
@@ -96,7 +97,7 @@ else:
                                                   model_path_folder=None, normalize=norm, scaler=scaler, point=point)
 
 
-mean_error_reg, std_error_reg, model_reg = Utils.linear_regression(keyword, variable_name, X.shape[0], level_c, level_f, level_single, n_input, norm, scaler=scaler)
+mean_error_reg, std_error_reg, model_reg = Utils.linear_regression(keyword, variable_name, X.shape[0], level_c, level_f, level_single, n_input, norm, scaler=scaler, point=point)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=validation_size, random_state=42)
 y_test = y_test.reshape(-1,)
@@ -106,14 +107,14 @@ if norm:
     elif scaler == "s" or scaler == "'s'":
         y_test = y_test * max_val + min_val
 
+best_model = None
+best_value=1000
 for nu in [0.5, 1.5, 2.5]:
     print("\n##########################################")
     print("Matern Kernel, nu=", nu)
-    y_train = np.log(y_train)
     gpr = fit_gaussian_process(X_train, y_train, kernel="", nu_=nu)
     y_pred, y_std = gpr.predict(X_test, return_std=True)
     y_pred = y_pred.reshape(-1,)
-    y_pred = np.exp(y_pred)
 
     if norm:
         if scaler == "m" or scaler == "'m'":
@@ -125,6 +126,9 @@ for nu in [0.5, 1.5, 2.5]:
     mean_error = Utils.compute_mean_prediction_error(y_test, y_pred, 2) * 100
     variance_error = Utils.compute_prediction_error_variance(y_test, y_pred, 2) * 100
     print(str(mean_error) + "%")
+    if mean_error<best_value:
+        best_value=mean_error
+        best_model = "Matern Kernel, nu=" + str(nu)
 
 
 print("\n##########################################")
@@ -145,4 +149,10 @@ print(colored("\nFinal prediction error:", "green", attrs=['bold']))
 mean_error = Utils.compute_mean_prediction_error(y_test, y_pred, 2) * 100
 variance_error = Utils.compute_prediction_error_variance(y_test, y_pred, 2) * 100
 print(str(mean_error) + "%")
+if mean_error < best_value:
+    best_value = mean_error
+    best_model = "RBF Kernel"
+
+print("Best performing configuration: ", best_model)
+
 

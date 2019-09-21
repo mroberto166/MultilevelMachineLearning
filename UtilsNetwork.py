@@ -310,7 +310,7 @@ def compute_time(keyword, level_c, level_f, level_single, samples):
     return time
 
 
-def call_GaussianProcess(key_word, var_name, sample_coarsest, lev_coarsest, lev_c, lev_f, string_norm, scaler, point):
+def call_GaussianProcess(key_word, var_name, sample_coarsest, lev_coarsest, lev_c, lev_f, string_norm, scaler, point, cluster="true"):
 
     arguments = list()
     arguments.append(str(key_word))
@@ -324,7 +324,10 @@ def call_GaussianProcess(key_word, var_name, sample_coarsest, lev_coarsest, lev_
     arguments.append(str(point))
 
     if sys.platform == "linux" or sys.platform == "linux2":
-        string_to_exec = "bsub python3 GaussianProcess.py "
+        if cluster == "true":
+            string_to_exec = "bsub python3 GaussianProcess.py "
+        else:
+            string_to_exec = "python3 GaussianProcess.py "
         for arg in arguments:
             string_to_exec = string_to_exec + " " + arg
         os.system(string_to_exec)
@@ -335,7 +338,7 @@ def call_GaussianProcess(key_word, var_name, sample_coarsest, lev_coarsest, lev_
         p.wait()
 
 
-def call_NeuralNetwork_cluster(key_word, n_sample, loss_func, folder_path, var_name, lev_c, lev_f, lev_coarsest, string_norm, validation_size, selection_method, scaler, setup, point):
+def call_NeuralNetwork_cluster(key_word, n_sample, loss_func, folder_path, var_name, lev_c, lev_f, lev_coarsest, string_norm, validation_size, selection_method, scaler, setup, point, cluster="true"):
 
     arguments = list()
     arguments.append(str(key_word))
@@ -357,9 +360,13 @@ def call_NeuralNetwork_cluster(key_word, n_sample, loss_func, folder_path, var_n
     arguments.append(str(point))
 
     if sys.platform == "linux" or sys.platform == "linux2":
-        string_to_exec = "bsub python3 NetworkSingleConf_tesr.py "
+        if cluster == "true":
+            string_to_exec = "bsub python3 NetworkSingleConf_tesr.py "
+        else:
+            string_to_exec = "python3 NetworkSingleConf_tesr.py "
         for arg in arguments:
             string_to_exec = string_to_exec + " " + arg
+        print(string_to_exec)
         os.system(string_to_exec)
 
     elif sys.platform == "win32":
