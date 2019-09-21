@@ -15,9 +15,6 @@ plt.rc('xtick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
 plt.rc('ytick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
 plt.rc('axes', titlesize=BIGGER_SIZE)    # fontsize of the tick labels
 
-#files = ["TestNet_60.txt", "TestNet_rand_gol.txt", "TestNet_rand_norm.txt", "TestNet_rand_uniform.txt", "sob_test_sobol.txt"]
-#initial = ["He, Uniform Inputs", "Glorot", "Normal", "Uniform", "He, Sobol Inputs"]
-
 files = ["TestNet_60.txt"]
 initial = ["He, Uniform Inputs"]
 des = ["ran"]
@@ -26,7 +23,6 @@ title = ["Neural Network, Random Samples"]
 for i in range(len(files)):
 
     data = pd.read_csv("./TestNet/"+files[i], header=0, sep=",")
-    print(data)
     samples = data.Samples.values
     GE = data.Generaliz_err.values
     TE = data.Training_err.values
