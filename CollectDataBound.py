@@ -45,13 +45,13 @@ for i in range(len(files)):
     plt.scatter(samples, GE, label=r'Generalization Error $\varepsilon_G$', marker="o")
     plt.scatter(samples, TE, label=r'Training Error $\varepsilon_T$', color="DarkBlue", marker= "v")
     plt.plot(samples, bounds, label="Bound",color="DarkRed", marker="d")
-    plt.plot(10**(x),10**(y), color="C0",ls=":")
-    if i!=0:
+    plt.plot(10**x,10**y, color="C0",ls=":")
+    if i != 0:
         plt.title(title[i])
     plt.legend(loc=1)
     plt.xlabel(r'Training Samples $M$')
     plt.ylabel("Mean Absolute Error")
-    plt.savefig('Images/bounds_'+des[i]+'.pdf', format='pdf')
+    plt.savefig('Images/bounds_'+des[i]+'.png', dpi=500)
 
     plt.figure()
     plt.grid(True, which="both", ls="-.")
@@ -59,4 +59,4 @@ for i in range(len(files)):
     plt.xscale("log")
     plt.xlabel(r'Training Samples $M$')
     plt.ylabel("Compression")
-    plt.savefig('Images/compression_'+des[i]+'.pdf', format='pdf')
+    plt.savefig('Images/compression_'+des[i]+'.png', dpi=500)

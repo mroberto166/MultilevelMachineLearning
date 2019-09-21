@@ -45,10 +45,8 @@ for k in range(len(keyword_list)):
 
     time_fin_list = list()
     score_fin_list = list()
-    score_fin_SPE_list = list()
     i = 0
     sensitivity_df = pd.DataFrame()
-    model_df = pd.DataFrame()
 
     for dir in directories_model:
         if "Depth_"in dir:
@@ -71,27 +69,22 @@ for k in range(len(keyword_list)):
             df["Nf"] = Nf
             df["Model Complexity"] = round(df.n_layer.values[0]/df.depth.values[0],2)
             df["Model Goodness MPE"] = df["gain_MPE_fin"]/df["Time Loss"]
-            df["Model Goodness SPE"] = df["gain_SPE_fin"] / df["Time Loss"]
-            df["Efficiency"] = np.log(df["MPE"]) *np.log(df["Time"])
+            #df["Model Goodness SPE"] = df["gain_SPE_fin"] / df["Time Loss"]
+            #df["Efficiency"] = np.log(df["MPE"]) *np.log(df["Time"])
 
             if i == 0:
                 sensitivity_df = df
-                model_df = models
             else:
                 sensitivity_df = sensitivity_df.append(df)
-                model_df = model_df.append(models)
 
             i = i+1
             score_fin_list.append(score_finest)
-            score_fin_SPE_list.append(SPE_finest)
             time_fin_list.append(time_finest)
 
     sensitivity_df = sensitivity_df.reset_index(drop=True)
-    model_df = model_df.reset_index(drop=True)
     sensitivity_df = sensitivity_df.drop("n_layer", axis=1)
     sensitivity_df = sensitivity_df.drop("depth", axis=1)
     sensitivity_df = sensitivity_df.drop("MPE_0", axis=1)
-
     sensitivity_df = sensitivity_df.loc[(sensitivity_df["Model Goodness MPE"] < 40)]
 
     # Prepare diagram efficiency vs time (per time intervals)
@@ -209,6 +202,7 @@ for k in range(len(keyword_list)):
     # out_var_vec.append("Efficiency")
     # out_var_vec.append("Model Goodness SPE")
 
+    # Plot the distribution of G
     plt.figure()
     ax = plt.gca()
     plt.grid(True, which="both", ls=":")
@@ -233,16 +227,15 @@ for k in range(len(keyword_list)):
     name_list = [r'$N_0$', r'$N_L$', r'$c_{ml}$']
     var_list = ["N0", "Nf", "Model Complexity"]
 
-    print(out_var_vec)
-
     if variable_name == "x_max":
         remove_outliers = 22
     elif variable_name == "Lift":
         remove_outliers = 3
     elif variable_name == "Drag":
         remove_outliers = 6
+
+    # Plot distribution for different values of design parameters
     for our_var in out_var_vec:
-        print(our_var)
         for j in range(len(var_list)):
             var = var_list[j]
             name = name_list[j]
@@ -254,22 +247,18 @@ for k in range(len(keyword_list)):
             for i in range(len(sens_list)):
                 df = sens_list[i]
 
-                if j != 3:
-                    value = df[var].values[0]
-                    label = name + r' $=$ ' + str(value)
-                    print("#################################")
-                    print(var, df[var].values[0])
-                    print(df[our_var].loc[(df["Model Goodness MPE"] < remove_outliers)].mean())
+                value = df[var].values[0]
+                label = name + r' $=$ ' + str(value)
+                print("#################################")
+                print(var, df[var].values[0])
+                print(df[our_var].loc[(df["Model Goodness MPE"] < remove_outliers)].mean())
 
-                if j != 3:
-                    sns.distplot(df[our_var], label=label, kde=True, hist=False, norm_hist=False,kde_kws={'shade': True, 'linewidth': 2})
-            plt.legend(loc=1)
+                sns.distplot(df[our_var], label=label, kde=True, hist=False, norm_hist=False,kde_kws={'shade': True, 'linewidth': 2})
 
-            if "gain" in our_var or "Good" in our_var or "Base" in our_var:
-
+            if"Good" in our_var :
                 baseline = 1
                 plt.gca().set_xlim(left=0)
-                if  variable_name=="Drag":
+                if variable_name == "Drag":
                     plt.gca().set_xlim(right=8)
                 plt.axvspan(-1, baseline, alpha=0.25, color='grey')
                 # Annotate
@@ -281,9 +270,10 @@ for k in range(len(keyword_list)):
                          transform=axes.transAxes,
                          s='Baseline\n' + r'$G = 1$',
                          rotation=0,
-                         #weight="bold",
                          bbox=dict(boxstyle="round", ec=(0, 0, 0), fc=(0.95, 0.95, 0.95),))
                 plt.xlabel(r'Accuracy Speed Up $G$')
+
+            plt.legend(loc=1)
 
     if keyword == "airf":
         perc = 4
@@ -293,6 +283,7 @@ for k in range(len(keyword_list)):
     print("Percentage larger than "+str(perc)+": "+ str(len(sensitivity_df.loc[(sensitivity_df["Model Goodness MPE"]>perc)])/len(sensitivity_df["Model Goodness MPE"])*100)+"%")
 
     ##########################################################################################################
+    # Plot MPE vs Cost
 
     fig_scatt_MPE = plt.figure()
     ax = plt.gca()
@@ -354,4 +345,4 @@ for k in range(len(keyword_list)):
     ax.yaxis.set_major_formatter(PercentFormatter())
     plt.savefig("Images/err_VS_Time_2_"+variable_name+".png", dpi=500)
 
-    #plt.show()
+    plt.show()
